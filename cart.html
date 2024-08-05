@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="C:\Users\rchan\OneDrive\Desktop\website-gennerators\script.css"> <!-- Update path as needed -->
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <div id="cart-items"></div>
+    <h2>Total: $<span id="total-amount">0</span></h2>
+
+    <script>
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartItemsDiv = document.getElementById('cart-items');
+            let totalAmount = 0;
+
+            cartItemsDiv.innerHTML = '';
+            cart.forEach(item => {
+                cartItemsDiv.innerHTML += `<p>${item.name} - $${item.price}</p>`;
+                totalAmount += item.price;
+            });
+
+            document.getElementById('total-amount').innerText = totalAmount.toFixed(2);
+        }
+
+        displayCart();
+    </script>
+</body>
+</html>
